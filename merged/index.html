@@ -56,7 +56,7 @@
         
         .controls {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 15px;
             flex-wrap: wrap;
             align-items: center;
@@ -74,6 +74,34 @@
         .search-box:focus {
             outline: none;
             border-color: #0066cc;
+        }
+        
+        .search-btn {
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background-color: #0052a3;
+        }
+        
+        .clear-btn {
+            padding: 8px 12px;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .clear-btn:hover {
+            background-color: #555;
         }
         
         .row-count {
@@ -170,7 +198,6 @@
             color: #666;
         }
         
-        /* Directory listing styles */
         .directory-list {
             list-style: none;
             margin: 20px 0;
@@ -212,21 +239,91 @@
             padding-bottom: 5px;
             border-bottom: 1px solid #ddd;
         }
-    </style>
+        
+        /* Download section styles */
+        .download-section {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        
+        .download-section summary {
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            background: #f0f0f0;
+            border-radius: 6px;
+        }
+        
+        .download-section[open] summary {
+            border-bottom: 1px solid #ddd;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .download-section summary:hover {
+            background: #e8e8e8;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 15px;
+        }
+        
+        .download-category h3 {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .download-category ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .download-category li {
+            padding: 4px 0;
+        }
+        
+        .download-category a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .download-category a:hover {
+            text-decoration: underline;
+        }
+        
+        .download-category a::before {
+            content: '⬇ ';
+            font-size: 0.75rem;
+        }
+</style>
 </head>
 <body>
     <header>
         <h1>Merged Data</h1>
-        <p class="subtitle">Consolidated spending data by category and year</p>
+        <p class="subtitle">Cleaned and normalized data by category and year</p>
     </header>
     
     <nav>
-        <a href="../">← Home</a>
+        <a href="../index.html">← Home</a>
 <a href="../category-totals/">Category Totals</a>
 <a href="../verbatim/">Verbatim Data</a>
     </nav>
     
-    <div class="category-section"><h2>Land, Building &amp; Works</h2><ul class="directory-list"><li><a href="../category-totals/land-building-works.html">All Years Combined</a></li><li><a href="land-building-works/2014-2015.html">2014-2015</a></li><li><a href="land-building-works/2015-2016.html">2015-2016</a></li><li><a href="land-building-works/2016-2017.html">2016-2017</a></li><li><a href="land-building-works/2017-2018.html">2017-2018</a></li><li><a href="land-building-works/2018-2019.html">2018-2019</a></li><li><a href="land-building-works/2019-2020.html">2019-2020</a></li><li><a href="land-building-works/2020-2021.html">2020-2021</a></li><li><a href="land-building-works/2021-2022.html">2021-2022</a></li><li><a href="land-building-works/2022-2023.html">2022-2023</a></li><li><a href="land-building-works/2023-2024.html">2023-2024</a></li><li><a href="land-building-works/2024-2025.html">2024-2025</a></li></ul></div><div class="category-section"><h2>Professional Services</h2><ul class="directory-list"><li><a href="../category-totals/professional-services.html">All Years Combined</a></li><li><a href="professional-services/2014-2015.html">2014-2015</a></li><li><a href="professional-services/2015-2016.html">2015-2016</a></li><li><a href="professional-services/2016-2017.html">2016-2017</a></li><li><a href="professional-services/2017-2018.html">2017-2018</a></li><li><a href="professional-services/2018-2019.html">2018-2019</a></li><li><a href="professional-services/2019-2020.html">2019-2020</a></li><li><a href="professional-services/2020-2021.html">2020-2021</a></li><li><a href="professional-services/2021-2022.html">2021-2022</a></li><li><a href="professional-services/2022-2023.html">2022-2023</a></li><li><a href="professional-services/2023-2024.html">2023-2024</a></li><li><a href="professional-services/2024-2025.html">2024-2025</a></li></ul></div><div class="category-section"><h2>Transfer Payments</h2><ul class="directory-list"><li><a href="../category-totals/transfer-payments.html">All Years Combined</a></li><li><a href="transfer-payments/2014-2015.html">2014-2015</a></li><li><a href="transfer-payments/2015-2016.html">2015-2016</a></li><li><a href="transfer-payments/2016-2017.html">2016-2017</a></li><li><a href="transfer-payments/2017-2018.html">2017-2018</a></li><li><a href="transfer-payments/2018-2019.html">2018-2019</a></li><li><a href="transfer-payments/2019-2020.html">2019-2020</a></li><li><a href="transfer-payments/2020-2021.html">2020-2021</a></li><li><a href="transfer-payments/2021-2022.html">2021-2022</a></li><li><a href="transfer-payments/2022-2023.html">2022-2023</a></li><li><a href="transfer-payments/2023-2024.html">2023-2024</a></li><li><a href="transfer-payments/2024-2025.html">2024-2025</a></li></ul></div>
+    
+    
+    <ul class="directory-list">
+        <li><a href="transfer-payments/">Transfer Payments</a><span class="file-info">Yearly transfer payment data</span></li><li><a href="professional-services/">Professional Services</a><span class="file-info">Yearly professional services data</span></li><li><a href="land-building-works/">Land, Building &amp; Works</a><span class="file-info">Yearly construction contract data</span></li>
+    </ul>
     
     <footer>
         <p>Source: Government of Canada Public Accounts | Data presented as published</p>

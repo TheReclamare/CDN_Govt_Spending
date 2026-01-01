@@ -56,7 +56,7 @@
         
         .controls {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 15px;
             flex-wrap: wrap;
             align-items: center;
@@ -74,6 +74,34 @@
         .search-box:focus {
             outline: none;
             border-color: #0066cc;
+        }
+        
+        .search-btn {
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background-color: #0052a3;
+        }
+        
+        .clear-btn {
+            padding: 8px 12px;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .clear-btn:hover {
+            background-color: #555;
         }
         
         .row-count {
@@ -170,7 +198,6 @@
             color: #666;
         }
         
-        /* Directory listing styles */
         .directory-list {
             list-style: none;
             margin: 20px 0;
@@ -212,21 +239,91 @@
             padding-bottom: 5px;
             border-bottom: 1px solid #ddd;
         }
-    </style>
+        
+        /* Download section styles */
+        .download-section {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        
+        .download-section summary {
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            background: #f0f0f0;
+            border-radius: 6px;
+        }
+        
+        .download-section[open] summary {
+            border-bottom: 1px solid #ddd;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .download-section summary:hover {
+            background: #e8e8e8;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 15px;
+        }
+        
+        .download-category h3 {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 8px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .download-category ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .download-category li {
+            padding: 4px 0;
+        }
+        
+        .download-category a {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .download-category a:hover {
+            text-decoration: underline;
+        }
+        
+        .download-category a::before {
+            content: '⬇ ';
+            font-size: 0.75rem;
+        }
+</style>
 </head>
 <body>
     <header>
         <h1>Category Totals</h1>
-        <p class="subtitle">Combined spending totals by category (2015-2025)</p>
+        <p class="subtitle">Total spending by category across all years</p>
     </header>
     
     <nav>
-        <a href="../">← Home</a>
+        <a href="../index.html">← Home</a>
 <a href="../merged/">Merged Data</a>
 <a href="../verbatim/">Verbatim Data</a>
     </nav>
     
-    <div class="category-section"><h2>Category Totals — All Years Combined (2015-2025)</h2><ul class="directory-list"><li><a href="land-building-works.html">Land, Building &amp; Works</a><span class="file-info">All construction and property contracts</span></li><li><a href="professional-services.html">Professional Services</a><span class="file-info">All professional service contracts</span></li><li><a href="transfer-payments.html">Transfer Payments</a><span class="file-info">All grants and contributions</span></li></ul></div>
+    
+    
+    <ul class="directory-list">
+        <li><a href="transfer-payments.html">Transfer Payments</a><span class="file-info">All transfer payment recipients 2015-2025</span></li><li><a href="professional-services.html">Professional Services</a><span class="file-info">All professional services 2015-2025</span></li><li><a href="land-building-works.html">Land, Building &amp; Works</a><span class="file-info">All construction contracts 2015-2025</span></li>
+    </ul>
     
     <footer>
         <p>Source: Government of Canada Public Accounts | Data presented as published</p>
