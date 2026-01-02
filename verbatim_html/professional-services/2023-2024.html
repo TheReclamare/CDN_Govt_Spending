@@ -12,7 +12,6 @@
         .subtitle { color: #666; margin-bottom: 15px; font-size: 0.9em; }
         .nav { margin-bottom: 15px; }
         .nav a { color: #0066cc; text-decoration: none; margin-right: 15px; }
-        .nav a:hover { text-decoration: underline; }
         .search-box { margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
         .search-box input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
         .search-box button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
@@ -36,22 +35,16 @@
         </div>
         <h1>Professional Services (Verbatim) - 2023-2024</h1>
         <p class="subtitle">Original government data for fiscal year 2023-2024</p>
-        
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search...">
             <button class="search" onclick="doSearch()">Search</button>
             <button class="clear" onclick="clearSearch()">Clear</button>
         </div>
-        
         <p class="stats">Showing <span id="visibleCount">10,050</span> of 10,050 records</p>
-        
         <div class="table-container">
             <table>
-                <thead>
-                    <tr><th>Fiscal Year</th><th>Ministry</th><th>Category</th><th>Description</th><th>Total $</th></tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr><td>2023/2024</td><td>Agriculture and Agri-Food</td><td>Business Services</td><td></td><td>$0</td></tr>
+                <thead><tr><th>Fiscal Year</th><th>Ministry</th><th>Category</th><th>Description</th><th>Total $</th></tr></thead>
+                <tbody id="tableBody"><tr><td>2023/2024</td><td>Agriculture and Agri-Food</td><td>Business Services</td><td></td><td>$0</td></tr>
 <tr><td>2023/2024</td><td>Agriculture and Agri-Food</td><td>Business Services</td><td>Asia Pacific Foundation of Canada, Vancouver, British Columbia</td><td>$200,000</td></tr>
 <tr><td>2023/2024</td><td>Agriculture and Agri-Food</td><td>Business Services</td><td>Axxima Inc, Toronto, Ontario</td><td>$102,791</td></tr>
 <tr><td>2023/2024</td><td>Agriculture and Agri-Food</td><td>Business Services</td><td>ARI Financial Services Inc, Mississauga, Ontario</td><td>$349,526</td></tr>
@@ -10101,67 +10094,43 @@
 <tr><td>2023/2024</td><td>Privy Council</td><td>Other Services</td><td></td><td>$0</td></tr>
 <tr><td>2023/2024</td><td>Privy Council</td><td>Other Services</td><td>Canada/British Columbia Business Services Society, Vancouver, British Columbia</td><td>$1,137,495</td></tr>
 <tr><td>2023/2024</td><td>Privy Council</td><td>Other Services</td><td>Service payments under $100,000 (4 payees)</td><td>$57,426</td></tr>
-
-                </tbody>
+</tbody>
             </table>
         </div>
     </div>
-    
     <script>
-        // Search functionality
         function doSearch() {
             const term = document.getElementById('searchInput').value.toLowerCase();
             const rows = document.querySelectorAll('#tableBody tr');
             let visible = 0;
             rows.forEach(row => {
                 const text = row.textContent.toLowerCase();
-                if (text.includes(term)) {
-                    row.classList.remove('hidden');
-                    visible++;
-                } else {
-                    row.classList.add('hidden');
-                }
+                if (text.includes(term)) { row.classList.remove('hidden'); visible++; }
+                else { row.classList.add('hidden'); }
             });
             document.getElementById('visibleCount').textContent = visible.toLocaleString();
         }
-        
         function clearSearch() {
             document.getElementById('searchInput').value = '';
             const rows = document.querySelectorAll('#tableBody tr');
             rows.forEach(row => row.classList.remove('hidden'));
             document.getElementById('visibleCount').textContent = rows.length.toLocaleString();
         }
-        
-        // Enter key triggers search
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') doSearch();
-        });
-        
-        // Column sorting
-        document.querySelectorAll('th').forEach((th, idx) => {
-            th.addEventListener('click', () => sortTable(idx));
-        });
-        
+        document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') doSearch(); });
+        document.querySelectorAll('th').forEach((th, idx) => th.addEventListener('click', () => sortTable(idx)));
         let sortDir = {};
         function sortTable(colIdx) {
             const tbody = document.getElementById('tableBody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             sortDir[colIdx] = !sortDir[colIdx];
-            
             rows.sort((a, b) => {
                 let aVal = a.cells[colIdx].textContent;
                 let bVal = b.cells[colIdx].textContent;
-                
-                // Try numeric sort for money columns
                 const aNum = parseFloat(aVal.replace(/[$,]/g, ''));
                 const bNum = parseFloat(bVal.replace(/[$,]/g, ''));
-                if (!isNaN(aNum) && !isNaN(bNum)) {
-                    return sortDir[colIdx] ? aNum - bNum : bNum - aNum;
-                }
-                
+                if (!isNaN(aNum) && !isNaN(bNum)) return sortDir[colIdx] ? aNum - bNum : bNum - aNum;
                 return sortDir[colIdx] ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
             });
-            
             rows.forEach(row => tbody.appendChild(row));
         }
     </script>
